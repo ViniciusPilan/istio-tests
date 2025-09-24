@@ -8,6 +8,7 @@ CLUSTER_02_SUFIX="c2"
 CLUSTER_02_NAME="kind-${CLUSTER_02_SUFIX}"
 
 
+# Creates the two clusters of the lab
 function create_clusters {
     echo "----------------------------------------------------------------------------------"
     echo "Creating clusters"
@@ -25,6 +26,7 @@ function create_clusters {
     kubectl apply -f namespaces.yaml --context=${CLUSTER_02_NAME}
 }
 
+# Setup ArgoCD in both clusters of this lab
 function install_argo {
     cd argocd
 
@@ -66,5 +68,6 @@ function main {
     create_clusters
     install_argo
 }
+
 
 main
