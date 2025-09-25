@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: test-server
+  name: test-server
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-server
+  template:
+    metadata:
+      labels:
+        app: test-server
+    spec:
+      containers:
+      - image: nginx
+        name: curl
+      - image: busybox
+        name: nslookup
+        command: ["/bin/sh", "-c"]
+        args: ["while true; do sleep 1; done"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: test-server
+  name: test-server
+  namespace: default
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+  selector:
+    app: test-server
+  type: ClusterIP

@@ -21,7 +21,7 @@ function create_clusters {
     kubectl wait --for create node/c2-control-plane --timeout=60s --context=${CLUSTER_02_NAME}
 
     echo "----------------------------------------------------------------------------------"
-    echo "Creating namespaces in both clusters"
+    echo "Creating core namespaces in both clusters"
     kubectl apply -f namespaces-cluster01.yaml --context=${CLUSTER_01_NAME}
     kubectl apply -f namespaces-cluster02.yaml --context=${CLUSTER_02_NAME}
 }
