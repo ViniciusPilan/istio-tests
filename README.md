@@ -32,3 +32,10 @@ istioctl remote-clusters --context="kind-c1"
 # In cluster 02
 istioctl remote-clusters --context="kind-c2"
 ```
+
+To create a scenario for test, you may type:
+```sh
+$ bash setup-workloads-example.sh
+```
+
+It will create a workload to be used in tests in this multicluster approach. With this new pod and services, you could be able to make some curls requests and nslookup, as well receive requests in port 80.
