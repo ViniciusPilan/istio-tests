@@ -22,8 +22,8 @@ function create_clusters {
 
     echo "----------------------------------------------------------------------------------"
     echo "Creating namespaces in both clusters"
-    kubectl apply -f namespaces.yaml --context=${CLUSTER_01_NAME}
-    kubectl apply -f namespaces.yaml --context=${CLUSTER_02_NAME}
+    kubectl apply -f namespaces-cluster01.yaml --context=${CLUSTER_01_NAME}
+    kubectl apply -f namespaces-cluster02.yaml --context=${CLUSTER_02_NAME}
 }
 
 # Setup ArgoCD in both clusters of this lab
@@ -58,8 +58,8 @@ function install_argo {
 
     echo "----------------------------------------------------------------------------------"
     echo "Creating applications in both clusters"
-    kubectl apply -f applications --context=${CLUSTER_01_NAME}
-    kubectl apply -f applications --context=${CLUSTER_02_NAME}
+    kubectl apply -f applications/istio-c1.yaml --context=${CLUSTER_01_NAME}
+    kubectl apply -f applications/istio-c2.yaml --context=${CLUSTER_02_NAME}
 
     cd -
 }
